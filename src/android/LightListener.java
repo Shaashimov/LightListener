@@ -40,12 +40,12 @@ public class LightListener extends CordovaPlugin implements SensorEventListener 
     private CallbackContext callbackContext;              // Keeps track of the JS callback context.
 
     /**
-     * Create an accelerometer listener.
+     * Create an light listener.
      */
     public LightListener() {
         this.x = 0;
         this.timestamp = 0;
-        this.setStatus(AccelListener.STOPPED);
+        this.setStatus(LightListener.STOPPED);
      }
 
     /**
@@ -118,7 +118,7 @@ public class LightListener extends CordovaPlugin implements SensorEventListener 
 
         this.setStatus(LightListener.STARTING);
 
-        // Get accelerometer from sensor manager
+        // Get light from sensor manager
         List<Sensor> list = this.sensorManager.getSensorList(Sensor.TYPE_LIGHT);
 
         // If found, then register as listener
