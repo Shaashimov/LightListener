@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+           id="com.Shaashimov.LightListener"
+      version="0.1.0">
+    <name>LightListener</name>
+    <description>A light listener Plugin</description>
+    <license>Apache Licence 2.0</license>
+    <keywords>phonegap,light,listener,sensors</keywords>
+
+    <js-module src="www/Lighter.js" name="LightListener">
+        <clobbers target="window.lighter" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="LightListener">
+                <param name="android-package" value="com.Shaashimov.LightListener.LightListener"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/LightListener.java" target-dir="src/com/Shaashimov/LightListener" />      
+     </platform>          
+</plugin>
