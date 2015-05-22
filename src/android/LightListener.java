@@ -2,18 +2,15 @@ package com.Shaashimov.LightListener;
 
 import java.util.List;
 
-import org.apache.cordova.AccelListener;
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
-import org.apache.cordova.api.CallbackContext;
-import org.apache.cordova.api.CordovaInterface;
-import org.apache.cordova.api.CordovaPlugin;
-import org.apache.cordova.api.PluginResult;
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -69,7 +66,8 @@ public class LightListener extends CordovaPlugin implements SensorEventListener 
      * @param callbackId    The callback id used when calling back into JavaScript.
      * @return              Whether the action was valid.
      */
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
+    @Override
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("start")) {
             this.callbackContext = callbackContext;
             if (this.status != LightListener.RUNNING) {
@@ -97,7 +95,9 @@ public class LightListener extends CordovaPlugin implements SensorEventListener 
      * Called by AccelBroker when listener is to be shut down.
      * Stop listener.
      */
+    @Override
     public void onDestroy() {
+        super.onDestroy();
         this.stop();
     }
 
@@ -216,6 +216,7 @@ public class LightListener extends CordovaPlugin implements SensorEventListener 
      */
     @Override
     public void onReset() {
+        super.onReset();
         if (this.status == LightListener.RUNNING) {
             this.stop();
         }
@@ -246,6 +247,7 @@ public class LightListener extends CordovaPlugin implements SensorEventListener 
     private void setStatus(int status) {
         this.status = status;
     }
+
     private JSONObject getLightJSON() {
         JSONObject r = new JSONObject();
         try {

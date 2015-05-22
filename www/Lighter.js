@@ -1,4 +1,4 @@
-/*
+cordova.define("com.Shaashimov.LightListener.LightListener", function(require, exports, module) { /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -26,7 +26,7 @@
 var argscheck = require('cordova/argscheck'),
     utils = require("cordova/utils"),
     exec = require("cordova/exec"),
-    Light = require('cordova/plugin/Light');
+    Light = require('cordova/plugin/LightListener');
 
 // Is the accel sensor running?
 var running = false;
@@ -53,13 +53,13 @@ function start() {
         for (var i = 0, l = tempListeners.length; i < l; i++) {
             tempListeners[i].fail(e);
         }
-    }, "Lighter", "start", []);
+    }, "LightListener", "start", []);
     running = true;
 }
 
 // Tells native to stop.
 function stop() {
-    exec(null, null, "Lighter", "stop", []);
+    exec(null, null, "LightListener", "stop", []);
     running = false;
 }
 
@@ -168,3 +168,5 @@ var lighter = {
 };
 
 module.exports = lighter;
+
+});
